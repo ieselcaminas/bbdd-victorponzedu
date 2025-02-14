@@ -9,8 +9,8 @@ public class GestionUsuarios {
             System.out.println("1 - Logearse");
             System.out.println("2 - Nuevo usuario");
             opcion = sc.nextInt();
-            if (opcion == -1){
-                GestionUsuarios.gestionMenu();
+            if (opcion == 1){
+                //Llamada a método para logearase
             }
         }
 
