@@ -18,6 +18,9 @@ public class GestionUsuarios {
             if (opcion == 1){
                 //Llamada a método para logearase
                 boolean logeado = existeUsuario();
+                //Podemos a la pantalla de inicio
+                if (logeado) break;
+
             }else if(opcion == 2){
                 //Llamada a método para insertar un usuario
             }
