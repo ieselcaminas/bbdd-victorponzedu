@@ -9,13 +9,17 @@ public class GestionUsuarios {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
 
-        while (opcion != -1){
+        while (opcion != 3){
             System.out.println("1 - Logearse");
             System.out.println("2 - Nuevo usuario");
+            System.out.println("3 - Salir");
+
             opcion = sc.nextInt();
             if (opcion == 1){
                 //Llamada a método para logearase
                 boolean logeado = existeUsuario();
+            }else if(opcion == 2){
+                //Llamada a método para insertar un usuario
             }
         }
 

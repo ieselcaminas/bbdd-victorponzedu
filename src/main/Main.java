@@ -17,6 +17,7 @@ public class Main {
         return connection;
     }
     public static void main(String[] args) throws SQLException {
+        connection = getConnection();
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
         while (opcion != -1){
