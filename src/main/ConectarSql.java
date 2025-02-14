@@ -38,6 +38,14 @@ public class ConectarSql {
         //insertUserPreparedStatement();
         deleteUserPreparedStatement();
     }
+    public static void selectPrepared() throws SQLException {
+        PreparedStatement st = null;
+        String sql = "SELECT FROM usuarios WHERE id = ?";
+        st = connection.prepareStatement(sql);
+        st.setInt(1, 5);
+        ResultSet rs = st.executeQuery();
+
+    }
     public static void insertUser() throws SQLException {
         Statement st = connection.createStatement();
         st.executeUpdate("INSERT INTO usuarios (nombre, apellidos) VALUES ('Janet', 'Espinosa')");
