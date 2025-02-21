@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class Main {
     static java.sql.Connection connection;
-    static String usuarioLogeado = "";
+    static String usuario = "";
+    static int id_usuario = -1;
     public static java.sql.Connection getConnection(){
         String host = "jdbc:sqlite:src/main/resources/network.sqlite";
         if (connection == null) {
@@ -22,17 +23,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
         while (opcion != -1){
-            if (!usuarioLogeado.isEmpty())
-                System.out.println(usuarioLogeado);
-
-            System.out.println(" 1 - Usuarios");
-            System.out.println(" 2 - Posts");
-            System.out.println(" 3 - Comentarios");
+            if (!usuario.isEmpty()){
+                System.out.print(usuario + " | ");
+            }
+            System.out.print(" 1 - Usuarios | ");
+            System.out.print(" 2 - Posts | ");
+            System.out.print(" 3 - Comentarios | ");
             System.out.println("-1 - Salir");
 
             opcion = sc.nextInt();
             if (opcion == 1){
                 GestionUsuarios.gestionMenu();
+            }else if (opcion == 2){
+                GestionPosts.gestionMenu();
             }
         }
     }
