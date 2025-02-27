@@ -34,6 +34,11 @@ public class Main {
         printBanner();
         //Inicializamos esta variable estática
         connection = getConnection();
+
+        gestionMenu();
+    }
+
+    private static void gestionMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
         while (opcion != -1){
@@ -54,7 +59,7 @@ public class Main {
                 GestionPosts.gestionMenu();
             }else if (opcion == 3){
                 GestionComentarios.gestionMenu();
-        }
+            }
         }
     }
     private static void printBanner() {
