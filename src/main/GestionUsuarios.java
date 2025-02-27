@@ -5,28 +5,32 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class GestionUsuarios {
+    /**
+     * Va a permitir gestionar el menú mediante un escáner de consola
+     * @throws SQLException
+     */
     public static void gestionMenu() throws SQLException {
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
         String usuario;
         while (opcion != -1){
+            System.out.print(AnsiColor.BLUE.getCode());
             System.out.print(" 1 - Login | ");
             System.out.print(" 2 - Nuevo usuario | ");
-            System.out.println("-1 - Salir");
-
+            System.out.print(AnsiColor.RED.getCode());
+            System.out.println("-1 para Salir");
+            System.out.print(AnsiColor.RESET.getCode());
             opcion = sc.nextInt();
             if (opcion == 1){
-                //Llamada a método para logearase
-
-                //Volvemos a la pantalla de inicio y fijamos el valor de la variable
-                //usuarioLogeado que está definida en la clase Main.
                 usuario = existeUsuario();
                 if (!usuario.isEmpty()){
+                    //Volvemos a la pantalla de inicio y fijamos el valor de la variable
+                    //usuario que está definida en la clase Main.
                     Main.usuario = usuario;
-                    System.out.println("Bienvenido");
+                    System.out.println("Bienvenido/a");
                     break;
                 }else{
-                    System.out.println("Usuario no encontrado");
+                    System.out.println("Usuario/a no encontrado");
                 }
 
             }else if (opcion == 2){
@@ -58,17 +62,28 @@ public class GestionUsuarios {
         System.out.println("Introduzca la contraseña:");
         contrasenya = sc.nextLine();
 
-        PreparedStatement st = con.prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND contrasenya = ?");
+        //Aol ser un SELECT, usamos executeQuery
+        PreparedStatement st = con.prepareStatement("SELECT * FROM usuarios WHERE nombre = ?" +
+                " AND contrasenya = ?");
+        //Dependiendo del tipo de dato, usaremos setString, setInt, setDate, ...
         st.setString(1, usuario);
         st.setString(2, contrasenya);
         ResultSet rs = st.executeQuery();
+        //Si hay algún registro, quiere decir que hay algún usuario con esas credenciales.
         if (rs.next()){
             Main.id_usuario = rs.getInt(1);
             return rs.getString(2);
         }
+        //Main.id_usuario = rs.getInt(1);
         return "";
 
     }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public static String insertarUsuario() throws SQLException {
         //Crear la conexión
         java.sql.Connection con = Main.connection;
